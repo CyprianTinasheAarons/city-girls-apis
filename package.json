@@ -1,0 +1,39 @@
+{
+  "name": "elearningsiteapi",
+  "version": "1.0.0",
+  "description": "Elearning Api",
+  "main": "serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "rest",
+    "api"
+  ],
+  "author": "Cyprian FullStack",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.2.3",
+    "aws-sdk": "^2.728.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.9.15",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "nodemailer": "^6.4.18",
+    "paynow": "^1.0.9",
+    "paypal-rest-sdk": "^1.8.1",
+    "pepipost-sdk-nodejs": "^0.4.0",
+    "serve-index": "^1.9.1",
+    "socket.io": "^4.1.3"
+  }
+}
