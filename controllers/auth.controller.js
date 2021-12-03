@@ -21,7 +21,7 @@ let transporter = nodemailer.createTransport({
 
 exports.signup = (req, res) => {
   const user = new User({
-    fullname: req.body.fullname,
+    fullname: req.body.fullName,
     surname: req.body.surname,
     email: req.body.email,
     role: req.body.role,
@@ -40,7 +40,7 @@ exports.signup = (req, res) => {
           Your Afroshelter admin account has been successful created. Your Architect ID is ${data.architectID} and username is ${user.username}.  \n
           Please click on the following link ${link} to reset your password. \n\n 
             \n`, // plain text body
-          html: `<b> Hi ${user.username} <br>
+          html: `<b> Hi ${user.fullname} <br>
             Your Afroshelter admin account has been successful activated. Architect ID is ${data.architectID}.  <br>
             Please click on the following link ${link} to reset your password. <br><br>
             </b>`, // html body
@@ -54,7 +54,7 @@ exports.signup = (req, res) => {
           }
         });
       } else {
-        res.send(data);
+        res.json({success: true });
       }
     })
     .catch((err) => {
@@ -66,11 +66,11 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   User.findOne({
-    username: req.body.username,
+    email: req.body.email,
   }).exec((err, user) => {
     if (err) {
-      res.status(500).send({ message: err });
-      return;
+      return res.status(500).send({ message: err });
+      
     }
     if (!user) {
       return res.status(404).send({ message: "User Not Found." });
@@ -91,14 +91,10 @@ exports.signin = (req, res) => {
 
     res.status(200).send({
       id: user._id,
-      username: user.username,
       fullname: user.fullname,
       surname: user.surname,
       email: user.email,
-      phoneNumber: req.body.phoneNumber,
       role: user.role,
-      image: user.image,
-      architectID: user.architectID,
       accessToken: token,
     });
   });
@@ -114,19 +110,6 @@ exports.users = (req, res) => {
     });
 };
 
-exports.user = (req, res) => {
-  console.log(req.params.architectId);
-
-  const id = req.params.architectId;
-
-  User.find({ architectID: `${id}` })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-};
 
 exports.update = (req, res) => {
   if (!req.body) {

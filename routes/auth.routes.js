@@ -21,7 +21,6 @@ module.exports = function (app) {
 
   app.get("/api/auth/users", controller.users);
 
-  app.get("/api/auth/users/:architectId", controller.user);
 
   app.put("/api/auth/users/update/:id", controller.update);
 

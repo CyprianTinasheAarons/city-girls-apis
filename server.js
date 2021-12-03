@@ -38,6 +38,12 @@ app.get("/", (req, res) => {
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/categories.routes")(app);
+require("./routes/location.routes")(app);
+require("./routes/period-tracker.routes")(app);
+require("./routes/resources.routes")(app);
+require("./routes/services.routes")(app);
+
+
 
 http.listen(port, () => {
   console.log(`Server is  running on port ${port}`);

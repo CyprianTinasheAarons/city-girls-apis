@@ -1,14 +1,18 @@
-const { authJwt } = require("../middlewares");
-const controller = require("../controllers/user.controller");
+module.exports = (app) => {
+  const period = require("../controllers/period.controller.js");
+  const {authJwt} = require('../middlewares')
 
-module.exports = function (app) {
-  app.use(function (req, res, next) {
-    res.header(
-      "Access-Control-Allow-Headers",
-      "x-access-token, Origin, Content-Type, Accept"
-    );
-    next();
-  });
+  let router = require("express").Router();
 
-  app.get("/api/auth/all", controller.allAccess);
+  router.post("/", [authJwt.verifyToken],period.addPeriod);
+  router.post("/update/:id", [authJwt.verifyToken],period.updatePeriod);
+
+  router.get("/",[authJwt.verifyToken], period.findAll);
+
+  router.delete("/:id",[authJwt.verifyToken], period.delete);
+
+  router.delete("/",[authJwt.verifyToken], period.deleteAll);
+
+  app.use("/api/period", router);
+
 };
