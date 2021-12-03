@@ -21,13 +21,9 @@ let transporter = nodemailer.createTransport({
 
 exports.signup = (req, res) => {
   const user = new User({
-    username: req.body.username,
     fullname: req.body.fullname,
     surname: req.body.surname,
-    architectID: req.body.architectID,
     email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    image: req.body.image,
     role: req.body.role,
     password: bcrypt.hashSync(req.body.password, 8),
   });

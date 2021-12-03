@@ -4,7 +4,7 @@
   "description": "Elearning Api",
   "main": "serve.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon node server.js"
   },
   "keywords": [
     "nodejs",
@@ -30,6 +30,7 @@
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
     "nodemailer": "^6.4.18",
+    "nodemon": "^2.0.15",
     "paynow": "^1.0.9",
     "paypal-rest-sdk": "^1.8.1",
     "pepipost-sdk-nodejs": "^0.4.0",

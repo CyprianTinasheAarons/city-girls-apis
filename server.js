@@ -32,7 +32,7 @@ db.mongoose
   });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Afroshelter api." });
+  res.json({ message: "Welcome to City girls  api." });
 });
 
 require("./routes/auth.routes")(app);
@@ -43,32 +43,5 @@ http.listen(port, () => {
   console.log(`Server is  running on port ${port}`);
 });
 
-io.on("connection", function (socket) {
-  console.log("A new user connected to the socket server!", socket.id);
 
-  socket.emit("connections", io.sockets.sockets.length);
 
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
-
-  socket.on("chat-message", (data) => {
-    socket.broadcast.emit("chat-message", data);
-  });
-
-  socket.on("typing", (data) => {
-    socket.broadcast.emit("typing", data);
-  });
-
-  socket.on("stopTyping", () => {
-    socket.broadcast.emit("stopTyping");
-  });
-
-  socket.on("joined", (data) => {
-    socket.broadcast.emit("joined", data);
-  });
-
-  socket.on("leave", (data) => {
-    socket.broadcast.emit("leave", data);
-  });
-});
