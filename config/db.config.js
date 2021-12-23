@@ -3,5 +3,5 @@
 // };
 
 module.exports = {
-  url: "mongodb://localhost:27017/citygirlsdb",
+  url: "mongodb+srv://city:ctygirls@cluster0.2neyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 };
