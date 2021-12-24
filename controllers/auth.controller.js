@@ -69,17 +69,17 @@ exports.signin = (req, res) => {
     email: req.body.email,
   }).exec((err, user) => {
     if (err) {
-      return res.status(500).send({ message: err });
+      return res.status(500).json({ message: err });
       
     }
     if (!user) {
-      return res.status(404).send({ message: "User Not Found." });
+      return res.status(404).json({ message: "User Not Found." });
     }
 
     let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
     if (!passwordIsValid) {
-      return res.status(401).send({
+      return res.status(401).json({
         accessToken: null,
         message: "Invalid Password!",
       });
@@ -89,7 +89,7 @@ exports.signin = (req, res) => {
       expiresIn: 86400, //  24hrs
     });
 
-    res.status(200).send({
+    res.status(200).json({
       id: user._id,
       fullname: user.fullname,
       surname: user.surname,
@@ -103,7 +103,7 @@ exports.signin = (req, res) => {
 exports.users = (req, res) => {
   User.find()
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
       console.log(err);
@@ -113,7 +113,7 @@ exports.users = (req, res) => {
 
 exports.update = (req, res) => {
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
       message: "data to update can not be empty!",
     });
   }
@@ -123,13 +123,13 @@ exports.update = (req, res) => {
   User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot update User with id=${id}. Maybe User was not found!`,
         });
-      } else res.send({ message: "User was updated successfully." });
+      } else res.json({ message: "User was updated successfully." });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating User with id=" + id,
       });
     });
@@ -141,17 +141,17 @@ exports.deleteOne = (req, res) => {
   User.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot delete User  with id=${id}. Maybe User  was not found!`,
         });
       } else {
-        res.send({
+        res.json({
           message: "User  was  deleted successfully!",
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete User with id= " + id,
       });
     });
@@ -160,12 +160,12 @@ exports.deleteOne = (req, res) => {
 exports.deleteAll = (req, res) => {
   User.deleteMany({})
     .then((data) => {
-      res.send({
+      res.json({
         message: `${data.deletedCount} users were deleted successfully`,
       });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occured while removing all tutorials ",
       });
@@ -174,7 +174,7 @@ exports.deleteAll = (req, res) => {
 
 exports.updateUsers = (req, res) => {
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
       message: "Data to update can not be empty!",
     });
   }
@@ -182,7 +182,7 @@ exports.updateUsers = (req, res) => {
   User.find()
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot update Plan with id=${id}`,
         });
       } else {
@@ -190,11 +190,11 @@ exports.updateUsers = (req, res) => {
           user.role = [`${user.role}`];
           user.save();
         });
-        res.send({ message: "Users were updated successfully." });
+        res.json({ message: "Users were updated successfully." });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating Plan with id=" + id,
       });
     });
