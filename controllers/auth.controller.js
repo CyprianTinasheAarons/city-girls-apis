@@ -89,14 +89,14 @@ exports.signin = (req, res) => {
       expiresIn: 86400, //  24hrs
     });
 
-    res.status(200).json({
+    res.status(200).json({user: {
       id: user._id,
       fullname: user.fullname,
       surname: user.surname,
       email: user.email,
       role: user.role,
       accessToken: token,
-    });
+    }});
   });
 };
 
