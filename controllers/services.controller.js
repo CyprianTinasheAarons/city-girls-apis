@@ -10,7 +10,7 @@ exports.addServices = (req, res) => {
     location: req.body.location,
     websiteUrl: req.body.websiteUrl,
     email: req.body.email,
-    email: req.body.email,
+    socialmedia: req.body.socialmedia,
     phoneNumber: req.body.phoneNumber,
     available: req.body.available,
     published: req.body.published,
@@ -21,10 +21,10 @@ exports.addServices = (req, res) => {
   services
     .save(services)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occured while creating the services",
       });
@@ -34,10 +34,10 @@ exports.addServices = (req, res) => {
 exports.findAll = (req, res) => {
   Services.find()
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || "Some error  occured while retrieving Jobs.",
       });
     });
@@ -45,7 +45,7 @@ exports.findAll = (req, res) => {
 
 exports.updateservices = (req, res) => {
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
       message: "Data to update can not be empty!",
     });
   }
@@ -55,13 +55,13 @@ exports.updateservices = (req, res) => {
   Services.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot update Plan with id=${id}`,
         });
-      } else res.send({ message: "services was updated successfully" });
+      } else res.json({ message: "services was updated successfully" });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating Plan with id=" + id,
       });
     });
@@ -72,18 +72,18 @@ exports.delete = (req, res) => {
   Services.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot delete Job with id=${id}. Maybe services was not found!`,
         });
       } else {
-        res.send({
+        res.json({
           message: "services was  deleted successfully!",
         });
       }
     })
 
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete category with id=" + id,
       });
     });
@@ -92,12 +92,12 @@ exports.delete = (req, res) => {
 exports.deleteAll = (req, res) => {
   Services.deleteMany({})
     .then((data) => {
-      res.send({
+      res.json({
         message: `${data.deletedCount} services were deleted successfully`,
       });
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occured while removing all services ",
       });

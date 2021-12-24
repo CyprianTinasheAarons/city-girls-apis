@@ -8,6 +8,7 @@ module.exports = (mongoose) => {
       websiteUrl: String,
       email: String,
       phoneNumber: String,
+      socialmedia: [],
       available: Boolean,
       published: Boolean,
       userId: String,
