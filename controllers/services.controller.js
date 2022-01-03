@@ -15,7 +15,7 @@ exports.addServices = (req, res) => {
     available: req.body.available,
     published: req.body.published,
     userId: req.body.userId,
-    
+    logoUrl: req.body.logoUrl
   });
 
   services
