@@ -7,7 +7,7 @@ module.exports = (app) => {
 
   router.post("/",[authJwt.verifyToken], services.addServices);
 
-  router.get("/", [authJwt.verifyToken],services.findAll);
+  router.get("/", services.findAll);
 
 
   router.delete("/:id", [authJwt.verifyToken],services.delete);
