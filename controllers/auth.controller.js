@@ -21,7 +21,7 @@ let transporter = nodemailer.createTransport({
 
 exports.signup = (req, res) => {
   const user = new User({
-    fullname: req.body.fullName,
+    fullname: req.body.fullname,
     surname: req.body.surname,
     email: req.body.email,
     role: req.body.role,
