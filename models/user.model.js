@@ -5,6 +5,9 @@ module.exports = (mongoose) => {
       fullname: String,
       surname: String,
       password: String,
+      services: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'service' }
+      ],
       role: [],
       resetPasswordToken: String,
       resetPasswordExpires: Date,

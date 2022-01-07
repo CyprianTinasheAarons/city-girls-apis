@@ -9,6 +9,7 @@ exports.addServices = (req, res) => {
     description: req.body.description,
     location: req.body.location,
     websiteUrl: req.body.websiteUrl,
+    category: req.body.category,
     email: req.body.email,
     socialmedia: req.body.socialmedia,
     phoneNumber: req.body.phoneNumber,
