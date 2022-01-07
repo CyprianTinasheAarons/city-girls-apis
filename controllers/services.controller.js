@@ -44,6 +44,20 @@ exports.findAll = (req, res) => {
     });
 };
 
+
+exports.filter = (req, res) => {
+  Services.filter({category: req.params.category})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message || "Some error  occured while retrieving Jobs.",
+      });
+    });
+};
+
+
 exports.updateservices = (req, res) => {
   if (!req.body) {
     return res.status(400).json({
