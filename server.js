@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models");
 let app = require("express")();
+const dotenv = require('dotenv');
 let port = process.env.PORT || 8090;
 let http = require("http").Server(app);
 let io = require("socket.io")(http, {
@@ -12,6 +13,7 @@ let io = require("socket.io")(http, {
 });
 
 app.use(cors());
+dotenv.config();
 
 app.use(bodyParser.json());
 
@@ -42,6 +44,7 @@ require("./routes/location.routes")(app);
 require("./routes/period-tracker.routes")(app);
 require("./routes/resources.routes")(app);
 require("./routes/services.routes")(app);
+require("./routes/email.routes")(app);
 
 
 
