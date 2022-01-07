@@ -8,6 +8,7 @@ module.exports = (app) => {
   router.post("/",[authJwt.verifyToken], services.addServices);
 
   router.get("/", services.findAll);
+  router.get("/:category", services.filter);
 
 
   router.delete("/:id", [authJwt.verifyToken],services.delete);

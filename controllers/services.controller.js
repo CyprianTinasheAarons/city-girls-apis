@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
 
 
 exports.filter = (req, res) => {
-  Services.filter({category: req.params.category})
+  Services.find({category: req.params.category})
     .then((data) => {
       res.json(data);
     })
