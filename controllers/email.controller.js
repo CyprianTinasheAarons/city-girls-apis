@@ -22,9 +22,12 @@ exports.sendInquiry = (req, res) => {
         to: req.body.email,
        
         subject: "Architect Account Details", // Subject line
-        text: `Hi 
-
-
+        text: `Hi ${req.body.CustomerEmail} \n 
+         Customer called ${req.body.name} is inquiring the following:\n
+          ${req.body.service}. \n\n
+        Contact details . \n\
+        phone:   ${req.body.phone}\n
+        email:   ${req.body.CustomerEmail}\n
           \n`,  
     }
 
