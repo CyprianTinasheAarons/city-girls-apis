@@ -12,4 +12,5 @@ module.exports = function (app) {
   });
 
   app.get("/api/auth/all",[authJwt.verifyToken], controller.allAccess);
+  app.delete("/api/auth/all",[authJwt.verifyToken], controller.deleteAll);
 };

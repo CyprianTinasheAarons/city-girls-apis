@@ -1,9 +1,16 @@
+const { user } = require("../models/index.js");
 const db = require("../models/index.js");
 const Services = db.services;
 
-exports.addServices = (req, res) => {
+exports.addServices = async (req, res) => {
+  const author = await user.findOne({userId: req.body.userId});
+ if(author) {
+   author.service = true;
+   author.save()
+  
+ }
  
-
+  
   const services = new Services({
     serviceName: req.body.serviceName,
     description: req.body.description,
@@ -23,6 +30,8 @@ exports.addServices = (req, res) => {
   services
     .save(services)
     .then((data) => {
+   
+
       res.json(data);
     })
     .catch((err) => {
@@ -36,6 +45,7 @@ exports.addServices = (req, res) => {
 exports.findAll = (req, res) => {
   Services.find()
     .then((data) => {
+
       res.json(data);
     })
     .catch((err) => {

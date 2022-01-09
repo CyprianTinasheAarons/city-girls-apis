@@ -7,6 +7,7 @@ const crypto = require("crypto");
 
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
+const { truncate } = require("fs/promises");
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
@@ -25,6 +26,7 @@ exports.signup = (req, res) => {
     surname: req.body.surname,
     email: req.body.email,
     role: req.body.role,
+    service: true,
     password: bcrypt.hashSync(req.body.password, 8),
   });
   user
@@ -96,6 +98,7 @@ exports.signin = (req, res) => {
       email: user.email,
       role: user.role,
       accessToken: token,
+      service: user.service
     }});
   });
 };
