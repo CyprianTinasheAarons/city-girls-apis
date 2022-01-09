@@ -58,7 +58,7 @@ exports.filter = (req, res) => {
     });
 };
 exports.filterLocation = (req, res) => {
-  Services.find({locations: req.params.location})
+  Services.find({location: req.params.location})
     .then((data) => {
       res.json(data);
     })
