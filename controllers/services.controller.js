@@ -8,6 +8,7 @@ exports.addServices = (req, res) => {
     serviceName: req.body.serviceName,
     description: req.body.description,
     location: req.body.location,
+    owner: req.user,
     websiteUrl: req.body.websiteUrl,
     category: req.body.category,
     email: req.body.email,
@@ -56,6 +57,19 @@ exports.filter = (req, res) => {
       });
     });
 };
+exports.filterLocation = (req, res) => {
+  Services.find({locations: req.params.location})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message || "Some error  occured while retrieving Jobs.",
+      });
+    });
+};
+
+
 
 
 exports.updateservices = (req, res) => {
