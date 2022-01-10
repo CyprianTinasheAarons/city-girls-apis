@@ -9,7 +9,9 @@ exports.addServices = async (req, res) => {
    author.save()
   
  }
- 
+ if(author.service){
+   return res.status(401).json({message: "you cant upload 2 services"})
+ }
   
   const services = new Services({
     serviceName: req.body.serviceName,
