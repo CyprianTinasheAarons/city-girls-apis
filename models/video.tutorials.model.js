@@ -3,6 +3,7 @@ module.exports = (mongoose) => {
       {
         title: String,
         url: String,
+        img: String,
         desc:String,
        
       },

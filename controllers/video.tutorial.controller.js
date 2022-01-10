@@ -7,7 +7,8 @@ exports.addVideoTutorial = (req, res) => {
   const _videoTutorial = new videoTutorial({
       title: req.body.title,
       url: req.body.url,
-      desc: req.body.desc
+      desc: req.body.desc,
+      img: req.body.img
   });
 
   _videoTutorial
