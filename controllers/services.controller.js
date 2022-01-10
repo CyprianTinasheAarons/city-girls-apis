@@ -3,15 +3,16 @@ const db = require("../models/index.js");
 const Services = db.services;
 
 exports.addServices = async (req, res) => {
-  const author = await user.findOne({userId: req.body.userId});
+  const author = await user.findOne({id: req.body.userId});
+  if(author.service){
+    return res.status(401).json({message: "you cant upload 2 services"})
+  }
  if(author) {
    author.service = true;
    author.save()
   
  }
- if(author.service){
-   return res.status(401).json({message: "you cant upload 2 services"})
- }
+ 
   
   const services = new Services({
     serviceName: req.body.serviceName,
