@@ -10,6 +10,7 @@ module.exports = (app) => {
   router.get("/", services.findAll);
   router.get("/:category", services.filter);
   router.get("/location/:location", services.filterLocation);
+  router.post("/user/:id", services.findOne);
 
 
   router.delete("/:id", [authJwt.verifyToken],services.delete);

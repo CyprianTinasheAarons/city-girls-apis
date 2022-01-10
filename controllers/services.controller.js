@@ -41,6 +41,18 @@ exports.addServices = async (req, res) => {
       });
     });
 };
+exports.findOne = async (req, res) => {
+  Services.findOne({userId: req.params.id})
+    .then((data) => {
+
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: err.message || "Some error  occured while retrieving your service.",
+      });
+    });
+};
 
 exports.findAll = (req, res) => {
   Services.find()

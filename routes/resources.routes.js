@@ -9,8 +9,7 @@ module.exports = (app) => {
 
   router.get("/",[authJwt.verifyToken], resource.findAll);
   router.post("/:id",[authJwt.verifyToken], resource.updateresource);
-
-
+  router.post("/:id",[authJwt.verifyToken], resource.findOne);
   router.delete("/:id",[authJwt.verifyToken], resource.delete);
 
   router.delete("/",[authJwt.verifyToken], resource.deleteAll);
