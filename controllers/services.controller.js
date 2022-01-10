@@ -5,14 +5,13 @@ const Services = db.services;
 exports.addServices = async (req, res) => {
   const author = await user.findOne({_id: req.body.userId});
   if(author.service){
-    return res.status(401).json({message: "you cant upload 2 services"})
+    return res.status(201).json({message: "you cant upload 2 services"})
   }
- if(author) {
-   author.service = true;
-   author.save()
-  
- }
- 
+  else{
+    author.service = true;
+    author.save()
+  }
+
   
   const services = new Services({
     serviceName: req.body.serviceName,
