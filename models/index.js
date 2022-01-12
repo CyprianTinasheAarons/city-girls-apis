@@ -13,6 +13,7 @@ db.period = require("./period.model.js")(mongoose);
 db.resource = require("./resources.model.js")(mongoose);
 db.services = require("./services.model.js")(mongoose);
 db.videoTutorial = require("./video.tutorials.model.js")(mongoose);
+db.documents = require("./documents.model.js")(mongoose);
 
 
 
