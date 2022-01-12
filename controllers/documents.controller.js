@@ -12,7 +12,7 @@ exports.addDocument = async(req, res) => {
     desc: req.body.desc,
   });
   try {
-
+res.send(req.file)
   }catch(err) {
     res.send(400);
   }
