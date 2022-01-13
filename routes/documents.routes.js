@@ -23,7 +23,7 @@ module.exports = (app) => {
     router.post("/update/:id", [authJwt.verifyToken],document.updateDocument);
   
     router.get("/", document.findAll);
-    router.get("/:filename",[authJwt.verifyToken], document.downloadFile);
+    router.get("/:filename", document.downloadFile);
   
     router.delete("/:id",[authJwt.verifyToken], document.delete);
   
