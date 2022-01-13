@@ -8,6 +8,7 @@ exports.addDocument = async(req, res) => {
 
   const document = new Document({
     title: req.body.title,
+    name: req.body.name,
     url: 'https://afternoon-lowlands-61668.herokuapp.com/document/' +req.body.url,
     desc: req.body.desc,
   });
