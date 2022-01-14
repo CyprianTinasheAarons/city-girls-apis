@@ -42,11 +42,16 @@ exports.downloadFile = (req, res, next) => {
 
 
 
-exports.findAll = (req, res) => {
+exports.findAll = (req, res,next) => {
   res.header('Content-Range', 'docs 0-20/20')
+
+  docs=[]
   Document.find()
     .then((data) => {
-      res.send(data);
+      data.forEach(function(post) {
+        docs.push({id: post._id, title: post.title, url: post.url, desc: post.desc, createdAt: post.createdAt})
+    });
+      res.json(docs);
     })
     .catch((err) => {
       res.status(500).send({

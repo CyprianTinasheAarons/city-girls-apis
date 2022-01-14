@@ -13,6 +13,12 @@ let io = require("socket.io")(http, {
 });
 
 app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  res.header("Access-Control-Expose-Headers", "X-Total-Count, Content-Range");
+  next();
+});
 dotenv.config();
 
 app.use(bodyParser.json());
