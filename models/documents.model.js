@@ -12,4 +12,4 @@ module.exports = (mongoose) => {
     const Documents = mongoose.model("documents", schema);
     return Documents;
   };
-  
+   

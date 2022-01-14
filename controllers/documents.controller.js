@@ -9,7 +9,7 @@ exports.addDocument = async(req, res) => {
   const document = new Document({
     title: req.body.title,
     name: req.body.name,
-    url: 'https://afternoon-lowlands-61668.herokuapp.com/document/' +req.body.url,
+    url: 'https://afternoon-lowlands-61668.herokuapp.com/api/document/' +req.body.url,
     desc: req.body.desc,
   });
   try {
@@ -43,6 +43,7 @@ exports.downloadFile = (req, res, next) => {
 
 
 exports.findAll = (req, res) => {
+  res.header('Content-Range', 'docs 0-20/20')
   Document.find()
     .then((data) => {
       res.send(data);
