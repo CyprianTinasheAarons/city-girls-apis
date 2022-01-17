@@ -67,45 +67,8 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  if(req.body.username){
-    User.findOne({
-      email: req.body.username,
-    }).exec((err, user) => {
-      if (err) {
-        return res.status(500).json({ message: err });
-        
-      }
-      if (!user) {
-        return res.status(404).json({ message: "User Not Found." });
-      }
-  
-      let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-  
-      if (!passwordIsValid) {
-        return res.status(401).json({
-          accessToken: null,
-          message: "Invalid Password!",
-        });
-      }
-  
-      let token = jwt.sign({ id: user.id }, config.secret, {
-      //  24hrs
-      });
-  
-      res.status(200).json({user: {
-        id: user._id,
-        fullname: user.fullname,
-        surname: user.surname,
-        email: user.email,
-        role: user.role,
-        accessToken: token,
-        service: user.service
-      }});
-    });
-    
-  }
   User.findOne({
-    email: req.body.email,
+    email: req.body.username,
   }).exec((err, user) => {
     if (err) {
       return res.status(500).json({ message: err });
