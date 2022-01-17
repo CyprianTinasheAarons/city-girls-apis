@@ -68,7 +68,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   User.findOne({
-    email: req.body.username,
+    email: req.body.email,
   }).exec((err, user) => {
     if (err) {
       return res.status(500).json({ message: err });

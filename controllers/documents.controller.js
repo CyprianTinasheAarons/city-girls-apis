@@ -59,6 +59,24 @@ exports.findAll = (req, res,next) => {
       });
     });
 };
+ 
+
+exports.findDoc = (req, res,next) => {
+  res.header('Content-Range', 'docs 0-20/20')
+
+  Document.findOne({_id: req.params.id})
+    .then((data) => {
+      
+    
+      res.json({id: data._id,title:data.title,url: data.url,desc:data.desc,createdAt: data.createdAt});
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error  occured while retrieving Jobs.",
+      });
+    });
+};
+
 
 exports.updateDocument = (req, res) => {
   if (!req.body) {
