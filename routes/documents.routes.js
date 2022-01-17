@@ -20,7 +20,7 @@ module.exports = (app) => {
     let router = require("express").Router();
   
     router.post("/", [authJwt.verifyToken,upload.single('profile') ] ,document.addDocument);
-    router.post("/update/:id",document.updateDocument);
+    router.put("/update/:id",document.updateDocument);
   
     router.get("/", document.findAll);
     router.get("/:filename", document.downloadFile);
