@@ -92,7 +92,7 @@ exports.signin = (req, res) => {
     //  24hrs
     });
 
-    res.status(200).json({user: {
+    res.status(200).json({
       id: user._id,
       fullname: user.fullname,
       surname: user.surname,
@@ -100,7 +100,7 @@ exports.signin = (req, res) => {
       role: user.role,
       accessToken: token,
       service: user.service
-    }});
+    });
   });
 };
 
