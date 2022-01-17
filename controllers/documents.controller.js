@@ -95,7 +95,7 @@ exports.updateDocument = (req, res) => {
          
           message: `Cannot update Plan with id=${id}`,
         });
-      } else res.send({ message: "Document was updated successfully" });
+      } else  res.status(200).json({id: data._id,title:data.title,url: data.url,desc:data.desc,createdAt: data.createdAt});;
     })
     .catch((err) => {
       res.status(500).send({
