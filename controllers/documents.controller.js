@@ -72,7 +72,9 @@ exports.updateDocument = (req, res) => {
   Document.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
+        console.log(req.body)
         res.status(404).send({
+         
           message: `Cannot update Plan with id=${id}`,
         });
       } else res.send({ message: "Document was updated successfully" });
