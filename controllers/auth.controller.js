@@ -1,6 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
+const Favourite = db.favourites;
 const nodemailer = require("nodemailer");
 
 const crypto = require("crypto");
@@ -29,10 +30,13 @@ exports.signup = (req, res) => {
     service: false,
     password: bcrypt.hashSync(req.body.password, 8),
   });
+ 
+
   user
     .save(user)
     .then((data) => {
-      let link = "https://admin.afroshelter.com/auth/forgot-password";
+   
+     
       if (data.role == "architect") {
         const mailOptions = {
           from: '"Sales" <sales@afroshelter.com>', // sender address
@@ -56,6 +60,7 @@ exports.signup = (req, res) => {
           }
         });
       } else {
+      
         res.json({success: true });
       }
     })

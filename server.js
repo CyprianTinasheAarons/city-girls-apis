@@ -53,6 +53,8 @@ require("./routes/services.routes")(app);
 require("./routes/email.routes")(app);
 require("./routes/video.tutorial.routes")(app);
 require("./routes/documents.routes")(app);
+require("./routes/documents.routes")(app);
+require("./routes/favourites.routes")(app);
 
 
 
