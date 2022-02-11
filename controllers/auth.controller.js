@@ -26,6 +26,7 @@ exports.signup = (req, res) => {
     fullname: req.body.fullname,
     surname: req.body.surname,
     email: req.body.email,
+    img: req.body.img,
     role: req.body.role,
     service: false,
     password: bcrypt.hashSync(req.body.password, 8),
@@ -104,7 +105,8 @@ exports.signin = (req, res) => {
       email: user.email,
       role: user.role,
       accessToken: token,
-      service: user.service
+      service: user.service,
+      img: user.img
     });
   });
 };

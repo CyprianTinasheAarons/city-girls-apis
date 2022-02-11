@@ -3,6 +3,7 @@ module.exports = (mongoose) => {
     {
       email: String,
       fullname: String,
+      img: String,
       surname: String,
       password: String,
       service:Boolean,
