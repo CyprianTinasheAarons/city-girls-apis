@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Expose-Headers", "X-Total-Count, Content-Range");
   next();
 });
-dotenv.config();
+dotenv.config();~
 
 app.use(bodyParser.json());
 
@@ -47,7 +47,7 @@ require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/categories.routes")(app);
 require("./routes/location.routes")(app);
-require("./routes/period-tracker.routes")(app);
+// require("./routes/period-tracker.routes")(app);
 require("./routes/resources.routes")(app);
 require("./routes/services.routes")(app);
 require("./routes/email.routes")(app);

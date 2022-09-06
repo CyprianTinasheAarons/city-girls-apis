@@ -3,5 +3,5 @@
 // };
 
 module.exports = {
-  url: "mongodb+srv://city:ctygirls@cluster0.2neyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  url: "mongodb+srv://fullstop:619619@citygirls.4gaqy9v.mongodb.net/?retryWrites=true&w=majority",
 };
